@@ -1,9 +1,12 @@
 package dev.javaspring.CadastroDeNinjas.entity;
-
-
 import jakarta.persistence.*;
-
+import lombok.*;
 import java.util.List;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 @Table(name = "tb_missoes")
@@ -24,37 +27,4 @@ public class MissoesModel {
     @OneToMany(mappedBy = "missoes")
     private List<NinjaModel> ninja;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    public String getNomeDaMissao() {
-        return nomeDaMissao;
-    }
-
-    public void setNomeDaMissao(String nomeDaMissao) {
-        this.nomeDaMissao = nomeDaMissao;
-    }
-
-    public String getDificuldade() {
-        return dificuldade;
-    }
-
-    public void setDificuldade(String dificuldade) {
-        this.dificuldade = dificuldade;
-    }
-
-    public MissoesModel() {
-    }
-
-    public MissoesModel(String nomeDaMissao, String dificuldade) {
-        this.nomeDaMissao = nomeDaMissao;
-        this.dificuldade = dificuldade;
-    }
 }
