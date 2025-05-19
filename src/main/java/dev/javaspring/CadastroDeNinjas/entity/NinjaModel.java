@@ -14,13 +14,14 @@ public class NinjaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", length = 100)
+    @Column(name = "Nome", length = 100)
     private String nome;
 
     @Column(name = "Idade", length = 3)
     private int idade;
 
-    @Column(name = "Email", length = 100)
+
+    @Column(unique = true, name = "Email", length = 100) //unique = true = apenas usuario com o mesmo email.
     private String email;
 
 //@ManyToOne um ninja tem uma unica missao.
