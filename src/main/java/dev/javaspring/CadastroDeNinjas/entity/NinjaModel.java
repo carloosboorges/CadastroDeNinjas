@@ -20,6 +20,9 @@ public class NinjaModel {
     @Column(name = "Idade", length = 3)
     private int idade;
 
+    @Column(name = "IMG_URL", length = 200)
+    private String imgURL;
+
 
     @Column(unique = true, name = "Email", length = 100) //unique = true = apenas usuario com o mesmo email.
     private String email;
