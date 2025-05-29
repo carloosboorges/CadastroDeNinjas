@@ -1,4 +1,5 @@
 package dev.javaspring.CadastroDeNinjas.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -25,6 +26,7 @@ public class MissoesModel {
 
     //Uma missao pode ter varios ninjas.
     @OneToMany(mappedBy = "missoes")
+    @JsonIgnore
     private List<NinjaModel> ninja;
 
 }
