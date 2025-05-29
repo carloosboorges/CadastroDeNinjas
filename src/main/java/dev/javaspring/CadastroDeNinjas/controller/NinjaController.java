@@ -6,6 +6,7 @@ import dev.javaspring.CadastroDeNinjas.service.NinjaService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/ninjas")
@@ -36,13 +37,19 @@ public class NinjaController {
     }
 
     //Procurar ninja por id (CREAT)
-    @GetMapping("/listarid")
-    public String procurarNinjaPorId() {
-        return "Aqui está o ninja com o id solicitado.";
+    @GetMapping("/listar/{id}")
+    public NinjaModel procurarNinjaPorId(@PathVariable Long id) {
+           Optional<NinjaModel> ninja = ninjaService.listarPorId(id);
+              if (ninja.isPresent()) {
+                return ninja.get();
+              } else {
+                throw new RuntimeException("Ninja não encontrado com o id: " + id);
+              }
+
     }
 
     //Alterar dados do ninja (UPDATE)
-    @PostMapping("/alterar")
+    @PutMapping("/alterar")
     public String alterarNinja() {
         return "Dados do ninja alterados com sucesso!";
     }
