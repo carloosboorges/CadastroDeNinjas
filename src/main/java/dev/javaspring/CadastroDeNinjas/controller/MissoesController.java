@@ -1,15 +1,25 @@
 package dev.javaspring.CadastroDeNinjas.controller;
+import dev.javaspring.CadastroDeNinjas.entity.MissoesModel;
+import dev.javaspring.CadastroDeNinjas.service.MissoesService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("missoes")
 public class MissoesController {
 
+    private MissoesService missoesService;
+
+    public MissoesController(MissoesService missoesService) {
+        this.missoesService = missoesService;
+    }
+
     //GET -- Mandar uma requisição para mostrar as missões cadastradas
     //Mostrar todas as missões (READ)
     @GetMapping("/listar")
-    public String listarMissoes() {
-        return "Missões listada com sucesso.";
+    public List<MissoesModel> listarMissoes() {
+        return missoesService.listarMissoes();
     }
 
     //POST -- Mandar uma requisição para criar uma nova missao
@@ -32,7 +42,6 @@ public class MissoesController {
     public String deletarMissao() {
         return "Missão deletada com sucesso!";
     }
-
 
 
 
