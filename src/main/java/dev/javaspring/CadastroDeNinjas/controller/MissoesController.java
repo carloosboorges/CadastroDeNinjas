@@ -22,11 +22,17 @@ public class MissoesController {
         return missoesService.listarMissoes();
     }
 
+    //Listar por ID
+    @GetMapping("/listar/{id}")
+    public MissoesModel buscarMissoesPorId(@PathVariable Long id) {
+        return missoesService.listarMissoesPorId(id);
+    }
+
     //POST -- Mandar uma requisição para criar uma nova missao
     //Adicionar missão (CREATE)
     @PostMapping("/criar")
-    public String criarMissao() {
-        return "Missão criada com sucesso!";
+    public MissoesModel criarMissao(@RequestBody MissoesModel missao) {
+        return missoesService.criarMissao(missao);
     }
 
     //PUT -- Mandar uma requisição para alterar uma missão existente
@@ -38,9 +44,10 @@ public class MissoesController {
 
     //DELETE -- Mandar uma requisição para deletar uma missão existente
     //Deletar missão (DELETE)
-    @DeleteMapping("/deletar")
-    public String deletarMissao() {
-        return "Missão deletada com sucesso!";
+    @DeleteMapping("/deletar{id}")
+    public void deletarMissao(@PathVariable Long id) {
+        missoesService.deleteMissoesPorId(id);
+
     }
 
 
