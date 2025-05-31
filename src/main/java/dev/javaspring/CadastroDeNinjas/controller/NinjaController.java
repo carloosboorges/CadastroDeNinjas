@@ -2,6 +2,7 @@ package dev.javaspring.CadastroDeNinjas.controller;
 
 
 import dev.javaspring.CadastroDeNinjas.entity.NinjaModel;
+import dev.javaspring.CadastroDeNinjas.repository.NinjaRepository;
 import dev.javaspring.CadastroDeNinjas.service.NinjaService;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +12,12 @@ import java.util.List;
 @RequestMapping("/ninjas")
 public class NinjaController {
 
+    private final NinjaRepository ninjaRepository;
     private NinjaService ninjaService;
 
-    public NinjaController(NinjaService ninjaService) {
+    public NinjaController(NinjaService ninjaService, NinjaRepository ninjaRepository) {
         this.ninjaService = ninjaService;
+        this.ninjaRepository = ninjaRepository;
     }
 
 
@@ -25,8 +28,9 @@ public class NinjaController {
 
     //Adicionar ninja(CREAT)
     @PostMapping("/criar")
-    public String criarNinja() {
-        return "Ninja criado com sucesso!";
+    public NinjaModel criarNinja(@RequestBody NinjaModel ninja) {
+        return ninjaService.criarNinja(ninja);
+
     }
 
     //Mostrar todos os ninjas (READ)
