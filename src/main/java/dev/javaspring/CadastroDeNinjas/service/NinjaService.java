@@ -4,7 +4,6 @@ import dev.javaspring.CadastroDeNinjas.entity.NinjaModel;
 import dev.javaspring.CadastroDeNinjas.mapper.NinjaMapper;
 import dev.javaspring.CadastroDeNinjas.repository.NinjaRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,7 +49,6 @@ public class NinjaService {
     }
 
     //Atualizar ninja
-
     public NinjaDTO atualizarNinja(Long id, NinjaDTO ninjaDTO) {
         Optional<NinjaModel> ninjaExistente = ninjaRepository.findById(id);
         if (ninjaExistente.isPresent()) {
