@@ -1,6 +1,7 @@
 package dev.javaspring.CadastroDeNinjas.controller;
 
 
+import dev.javaspring.CadastroDeNinjas.dto.NinjaDTO;
 import dev.javaspring.CadastroDeNinjas.entity.NinjaModel;
 import dev.javaspring.CadastroDeNinjas.repository.NinjaRepository;
 import dev.javaspring.CadastroDeNinjas.service.NinjaService;
@@ -28,26 +29,26 @@ public class NinjaController {
 
     //Adicionar ninja(CREAT)
     @PostMapping("/criar")
-    public NinjaModel criarNinja(@RequestBody NinjaModel ninja) {
+    public NinjaDTO criarNinja(@RequestBody NinjaDTO ninja) {
         return ninjaService.criarNinja(ninja);
 
     }
 
     //Mostrar todos os ninjas (READ)
     @GetMapping("/listar")
-    public List<NinjaModel> listarNinjas() {
+    public List<NinjaDTO> listarNinjas() {
         return ninjaService.listarNinjas() ;
     }
 
     //Procurar ninja por id (CREAT)
     @GetMapping("/listar/{id}")
-    public NinjaModel listarPorId(@PathVariable Long id) {
+    public NinjaDTO listarPorId(@PathVariable Long id) {
         return ninjaService.listarPorId(id);
     }
 
     //Alterar dados do ninja (UPDATE)
     @PutMapping("/alterar/{id}")
-    public NinjaModel alterarNinja(@PathVariable Long id, @RequestBody NinjaModel ninjaAtualizado) {
+    public NinjaDTO alterarNinja(@PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado) {
         return ninjaService.atualizarNinja(id, ninjaAtualizado);
     }
 
