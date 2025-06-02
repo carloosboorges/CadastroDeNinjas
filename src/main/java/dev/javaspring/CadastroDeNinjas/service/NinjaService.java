@@ -38,6 +38,10 @@ public class NinjaService {
 
     //Criar ninja
     public NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
+        Optional<NinjaModel> ninjaExistente = ninjaRepository.findByEmail(ninjaDTO.getEmail());
+        if(ninjaExistente.isPresent()){
+            throw new IllegalArgumentException("Já existe um ninja com esse email: " + ninjaDTO.getEmail());
+        }
         NinjaModel ninja = ninjaMapper.map(ninjaDTO);
         ninja = ninjaRepository.save(ninja);
         return ninjaMapper.map(ninja);
