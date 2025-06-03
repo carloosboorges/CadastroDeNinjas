@@ -3,16 +3,18 @@ import dev.javaspring.CadastroDeNinjas.dto.NinjaDTO;
 import dev.javaspring.CadastroDeNinjas.entity.NinjaModel;
 import dev.javaspring.CadastroDeNinjas.mapper.NinjaMapper;
 import dev.javaspring.CadastroDeNinjas.repository.NinjaRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @Service
 public class NinjaService {
 
-    private NinjaRepository ninjaRepository;
-    private NinjaMapper ninjaMapper;
+    private final NinjaRepository ninjaRepository;
+    private final NinjaMapper ninjaMapper;
 
 
     public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
