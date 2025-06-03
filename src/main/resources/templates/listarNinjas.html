@@ -1,38 +1,144 @@
-<!
-<html lang=pt>
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tabela de Ninjas</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        img {
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .actions a {
+            text-decoration: none;
+            padding: 6px 12px;
+            margin-right: 5px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        .btn-ver {
+            background-color: #3498db;
+        }
+
+        .btn-ver:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-editar {
+            background-color: #f39c12;
+        }
+
+        .btn-editar:hover {
+            background-color: #d68910;
+        }
+
+        .btn-deletar {
+            background-color: #e74c3c;
+        }
+
+        .btn-deletar:hover {
+            background-color: #c0392b;
+        }
+
+        .missao-info {
+            color: #2c3e50;
+        }
+
+        .sem-missao {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
 
- <h1>Lista de ninjas</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Imagem</th>
-        <th>Id</th>
-        <th>Nome</th>
-        <th>Idade</th>
-        <th>Email</th>
-        <th>Rank</th>
-        <th>Missoes</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each ="ninja: ${ninjas}">
+<h1>Lista de Ninjas</h1>
+<div style="max-width: 95%; margin: auto;">
+    <a href="/ninjas/ui/adicionar"
+       style="display: inline-block; padding: 10px 15px; background-color: #4CAF50; color: white; border-radius: 5px; text-decoration: none; margin-bottom: 20px;">
+        Cadastrar Novo Ninja
+    </a>
+    <table>
+        <thead>
+        <tr>
+            <th>Imagem</th>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Email</th>
+            <th>Missão</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ninja : ${ninjas}">
 
-        <td><img th:src="${ninja.imgURL}"></td>
-        <td th:text="${ninja.id}"></td>
-        <td th:text="${ninja.nome}"></td>
-        <td th:text="${ninja.idade}"></td>
-        <td th:text="${ninja.email}"></td>
-        <td th:text="${ninja.missoes}"></td>
+            <td><img th:src="${ninja.imgURL}" width="80" height="80"></td>
+            <td th:text="${ninja.id}"></td>
+            <td th:text="${ninja.nome}"></td>
+            <td th:text="${ninja.idade}"></td>
+            <td th:text="${ninja.email}"></td>
 
-    </tr>
-    </tbody>
+            <td>
+            <span th:if="${ninja.missoes != null}" class="missao-info">
+                Nome: <span th:text="${ninja.missoes.nomeDaMissao}"></span><br>
+                Dificuldade: <span th:text="${ninja.missoes.dificuldade}"></span>
+            </span>
+                <span th:if="${ninja.missoes == null}" class="sem-missao">Sem missões cadastradas</span>
+            </td>
 
-</table>
+            <td class="actions">
+                <a th:href="@{/ninjas/ui/detalhes/{id}(id=${ninja.id})}" class="btn-ver">Ver</a>
+                <a th:href="@{/ninjas/ui/editar/{id}(id=${ninja.id})}" class="btn-editar">Alterar</a>
+                <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}"
+                   class="btn-deletar"
+                   onclick="return confirm('Tem certeza que deseja deletar este ninja?');">
+                    Deletar
+                </a>
 
+        </tr>
+        </tbody>
+
+    </table>
+</div>
 </body>
 </html>
