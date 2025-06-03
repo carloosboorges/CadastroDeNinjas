@@ -1,0 +1,38 @@
+<!
+<html lang=pt>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabela de Ninjas</title>
+</head>
+<body>
+
+ <h1>Lista de ninjas</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Imagem</th>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Email</th>
+        <th>Rank</th>
+        <th>Missoes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each ="ninja: ${ninjas}">
+
+        <td><img th:src="${ninja.imgURL}"></td>
+        <td th:text="${ninja.id}"></td>
+        <td th:text="${ninja.nome}"></td>
+        <td th:text="${ninja.idade}"></td>
+        <td th:text="${ninja.email}"></td>
+        <td th:text="${ninja.missoes}"></td>
+
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>

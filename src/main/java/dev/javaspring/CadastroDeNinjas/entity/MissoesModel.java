@@ -26,7 +26,7 @@ public class MissoesModel {
 
     //Uma missao pode ter varios ninjas.
     @OneToMany(mappedBy = "missoes")
-    @JsonIgnore
+    @JsonIgnore //Para o loop
     private List<NinjaModel> ninja;
 
 }
